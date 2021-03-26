@@ -2,7 +2,7 @@ package linked_list
 
 import "testing"
 
-func TestDetectCycle(t *testing.T) {
+func TestSwapPairs(t *testing.T) {
 	p1 := &ListNode{
 		Val:  1,
 		Next: nil,
@@ -17,8 +17,13 @@ func TestDetectCycle(t *testing.T) {
 		Next: nil,
 	}
 	p2.Next = p3
-	p3.Next = p2
-	v := detectCycle(p1)
+	p4 := &ListNode{
+		Val:  4,
+		Next: nil,
+	}
+	p3.Next = p4
+
+	v := swapPairs(p1)
 	if v.Val == 2 {
 		t.Logf("查找环正确")
 	} else {
