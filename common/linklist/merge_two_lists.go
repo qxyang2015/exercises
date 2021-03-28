@@ -1,4 +1,4 @@
-package linked_list
+package linklist
 
 /*
 1. 合并两个有序链表

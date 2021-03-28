@@ -1,4 +1,4 @@
-package linked_list
+package linklist
 
 /*
 反转一个单链表。
