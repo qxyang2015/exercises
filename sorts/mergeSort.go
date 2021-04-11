@@ -25,7 +25,7 @@ func MergeSort(arr []int) []int {
 	middle := length / 2
 	left := arr[0:middle]
 	right := arr[middle:]
-	return merge(mergeSort(left), mergeSort(right))
+	return merge(MergeSort(left), MergeSort(right))
 }
 
 func merge(left []int, right []int) []int {
