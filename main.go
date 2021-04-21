@@ -6,12 +6,11 @@ import (
 
 func main() {
 	fmt.Println("start")
-	s := "abcABC123"
-	//for idx, v := range s {
-	//	fmt.Println(idx, v, s[idx], reflect.TypeOf(v), reflect.TypeOf(s[idx]), string(v))
-	//}
-	for _, v := range []byte(s) {
-		fmt.Println(v)
+	cnt := 10
+	for mask := 0; mask < 1<<cnt; mask++ {
+		for i := 0; i < cnt; i++ {
+			fmt.Printf("%b >> %v  = %b\n", mask, i, mask>>i)
+		}
 	}
 	fmt.Println("done!")
 }
