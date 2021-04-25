@@ -11,7 +11,7 @@ https://leetcode-cn.com/problems/unique-paths/
 
 //滚动数组法，空间复杂度更低
 func uniquePaths(m int, n int) int {
-	if n <= 0 || n <= 0 {
+	if n <= 0 {
 		return 0
 	}
 	dp := make([]int, n)
