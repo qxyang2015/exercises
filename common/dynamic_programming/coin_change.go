@@ -31,7 +31,7 @@ func coinChange1(coins []int, amount int) int {
 	return dp[amount]
 }
 
-//BFS解法
+//BFS解法，复杂度过高
 func coinChange(coins []int, amount int) int {
 	if len(coins) < 1 {
 		return -1
