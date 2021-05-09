@@ -15,16 +15,14 @@ func rob(nums []int) int {
 	if n == 1 {
 		return nums[0]
 	}
-	p, q := nums[0], Max(nums[0], nums[1])
-	ans := q
-	for i := 2; i < n; i++ {
-		r := Max(q, p+nums[i])
-		p, q = q, r
-		if r > ans {
-			ans = r
-		}
+	if n == 2 {
+		return Max(nums[0], nums[1])
 	}
-	return ans
+	p, q := nums[0], Max(nums[0], nums[1])
+	for i := 2; i < n; i++ {
+		p, q = q, Max(q, p+nums[i])
+	}
+	return q
 }
 
 func rob1(nums []int) int {
