@@ -1,5 +1,7 @@
 package Sort
 
+import "fmt"
+
 /*
 算法步骤
 比较相邻的元素。如果第一个比第二个大，就交换他们两个。
@@ -15,12 +17,13 @@ func BubbleSort(arr []int) []int {
 	}
 	for i := 0; i < len(arr)-1; i++ {
 		flag := 1
-		for j := i; j < len(arr)-1; j++ {
+		for j := 0; j < len(arr)-1-i; j++ {
 			if arr[j] > arr[j+1] {
 				arr[j], arr[j+1] = arr[j+1], arr[j]
 				flag = 0
 			}
 		}
+		fmt.Println(arr)
 		if flag == 1 {
 			break
 		}
