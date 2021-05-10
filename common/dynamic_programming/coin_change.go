@@ -1,6 +1,9 @@
 package dynamic_programming
 
-import "math"
+import (
+	"math"
+	"v0/common/tools"
+)
 
 /*
 322. 零钱兑换
@@ -21,7 +24,7 @@ func coinChange1(coins []int, amount int) int {
 		dp[i] = math.MaxInt32
 		for j := 0; j < len(coins); j++ {
 			if coins[j] <= i {
-				dp[i] = Min(dp[i], dp[i-coins[j]]+1)
+				dp[i] = tools.Min(dp[i], dp[i-coins[j]]+1)
 			}
 		}
 	}

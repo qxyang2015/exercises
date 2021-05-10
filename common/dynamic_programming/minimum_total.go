@@ -1,6 +1,9 @@
 package dynamic_programming
 
-import "math"
+import (
+	"math"
+	"v0/common/tools"
+)
 
 /*
 120. 三角形最小路径和
@@ -24,13 +27,13 @@ func minimumTotal(triangle [][]int) int {
 		prev := 1 - curr
 		dp[curr][0] = dp[prev][0] + triangle[i][0]
 		for j := 1; j < i; j++ {
-			dp[curr][j] = MinInt(dp[prev][j], dp[prev][j-1]) + triangle[i][j]
+			dp[curr][j] = tools.Min(dp[prev][j], dp[prev][j-1]) + triangle[i][j]
 		}
 		dp[curr][i] = dp[prev][i-1] + triangle[i][i]
 	}
 	ans := math.MaxInt32
 	for i := 0; i < n; i++ {
-		ans = MinInt(ans, dp[(n-1)%2][i])
+		ans = tools.Min(ans, dp[(n-1)%2][i])
 	}
 	return ans
 }
@@ -47,20 +50,13 @@ func minimumTotal1(triangle [][]int) int {
 	for i := 1; i < len(triangle); i++ {
 		dp[i][0] = dp[i-1][0] + triangle[i][0]
 		for j := 1; j < i; j++ {
-			dp[i][j] = MinInt(dp[i-1][j], dp[i-1][j-1]) + triangle[i][j]
+			dp[i][j] = tools.Min(dp[i-1][j], dp[i-1][j-1]) + triangle[i][j]
 		}
 		dp[i][i] = dp[i-1][i-1] + triangle[i][i]
 	}
 	ans := math.MaxInt32
 	for i := 0; i < len(triangle[len(triangle)-1]); i++ {
-		ans = MinInt(ans, dp[len(triangle)-1][i])
+		ans = tools.Min(ans, dp[len(triangle)-1][i])
 	}
 	return ans
-}
-
-func MinInt(v1, v2 int) int {
-	if v1 < v2 {
-		return v1
-	}
-	return v2
 }

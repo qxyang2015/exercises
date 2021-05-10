@@ -1,5 +1,7 @@
 package dynamic_programming
 
+import "v0/common/tools"
+
 /*
 1143. 最长公共子序列
 https://leetcode-cn.com/problems/longest-common-subsequence/
@@ -24,16 +26,9 @@ func longestCommonSubsequence(text1 string, text2 string) int {
 			if c1 == c2 {
 				dp[i+1][j+1] = dp[i][j] + 1
 			} else {
-				dp[i+1][j+1] = Max(dp[i+1][j], dp[i][j+1])
+				dp[i+1][j+1] = tools.Max(dp[i+1][j], dp[i][j+1])
 			}
 		}
 	}
 	return dp[m][n]
-}
-
-func Max(v1, v2 int) int {
-	if v1 > v2 {
-		return v1
-	}
-	return v2
 }

@@ -1,5 +1,7 @@
 package dynamic_programming
 
+import "v0/common/tools"
+
 /*
 152. 乘积最大子数组
 https://leetcode-cn.com/problems/maximum-product-subarray/
@@ -17,17 +19,10 @@ func maxProduct(nums []int) int {
 	ans := nums[0]
 	for i := 1; i < len(nums); i++ {
 		dpMax[i] = Max(dpMax[i-1]*nums[i], Max(dpMin[i-1]*nums[i], nums[i]))
-		dpMin[i] = Min(dpMin[i-1]*nums[i], Min(dpMax[i-1]*nums[i], nums[i]))
+		dpMin[i] = tools.Max(dpMin[i-1]*nums[i], tools.Min(dpMax[i-1]*nums[i], nums[i]))
 		if ans < dpMax[i] {
 			ans = Max(ans, dpMax[i])
 		}
 	}
 	return ans
-}
-
-func Min(v1, v2 int) int {
-	if v1 < v2 {
-		return v1
-	}
-	return v2
 }
