@@ -8,7 +8,7 @@ package Sort
 */
 
 //选择排序
-func SelectionSort(arr []int) []int {
+func SelectSort(arr []int) []int {
 	if len(arr) == 0 {
 		return nil
 	}

@@ -8,33 +8,31 @@ package Sort
 */
 
 //快速排序
-func quickSort(arr []int) []int {
-	return _quickSort(arr, 0, len(arr)-1)
-}
-
-func _quickSort(arr []int, left, right int) []int {
-	if left < right {
-		partitionIndex := partition(arr, left, right)
-		_quickSort(arr, left, partitionIndex-1)
-		_quickSort(arr, partitionIndex+1, right)
+func QuickSort(arr []int) []int {
+	if len(arr) < 2 {
+		return arr
 	}
+	quickSortMethod(arr, 0, len(arr)-1)
 	return arr
 }
 
-func partition(arr []int, left, right int) int {
-	pivot := left
-	index := pivot + 1
-
-	for i := index; i <= right; i++ {
-		if arr[i] < arr[pivot] {
-			swap(arr, i, index)
-			index += 1
-		}
+func quickSortMethod(arr []int, l, r int) {
+	if l >= r {
+		return
 	}
-	swap(arr, pivot, index-1)
-	return index - 1
+	p := partition(arr, l, r)
+	quickSortMethod(arr, l, p-1)
+	quickSortMethod(arr, p+1, r)
 }
 
-func swap(arr []int, i, j int) {
-	arr[i], arr[j] = arr[j], arr[i]
+func partition(arr []int, l, r int) int {
+	counter, p := l, r
+	for i := l; i < r; i++ {
+		if arr[i] < arr[p] {
+			arr[counter], arr[i] = arr[i], arr[counter]
+			counter++
+		}
+	}
+	arr[p], arr[counter] = arr[counter], arr[p]
+	return counter
 }

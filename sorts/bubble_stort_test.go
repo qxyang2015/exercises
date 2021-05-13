@@ -4,9 +4,9 @@ import (
 	"testing"
 )
 
-func TestBubbleSort(t *testing.T) {
+func TestSort(t *testing.T) {
 	arr := []int{2, 1, 3, 4, 5}
-	ans := BubbleSort(arr)
+	ans := QuickSort(arr)
 	if len(ans) != 5 {
 		t.Errorf("BubbleSort(arr) = %d; want 5", ans)
 	} else {
