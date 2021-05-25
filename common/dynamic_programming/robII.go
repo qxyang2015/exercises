@@ -1,5 +1,7 @@
 package dynamic_programming
 
+import "v0/common/tools"
+
 /*
 213. 打家劫舍 II
 https://leetcode-cn.com/problems/house-robber-ii/
@@ -17,15 +19,15 @@ func robII(nums []int) int {
 		return nums[0]
 	}
 	if n == 2 {
-		return Max(nums[0], nums[1])
+		return tools.Max(nums[0], nums[1])
 	}
-	return Max(robMethod(nums[:n-1]), robMethod(nums[1:]))
+	return tools.Max(robMethod(nums[:n-1]), robMethod(nums[1:]))
 }
 
 func robMethod(nums []int) int {
-	p, q := nums[0], Max(nums[0], nums[1])
+	p, q := nums[0], tools.Max(nums[0], nums[1])
 	for i := 2; i < len(nums); i++ {
-		p, q = q, Max(q, p+nums[i])
+		p, q = q, tools.Max(q, p+nums[i])
 	}
 	return q
 }

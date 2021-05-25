@@ -2,7 +2,6 @@ package tree
 
 import (
 	"strconv"
-	"strings"
 )
 
 /*
@@ -39,7 +38,7 @@ func (c *Codec) serialize(root *TreeNode) string {
 	return c.str
 }
 
-// Deserializes your encoded data to tree.
-func (c *Codec) deserialize(data string) *TreeNode {
-	strList := strings.Split(data, ",")
-}
+//// Deserializes your encoded data to tree.
+//func (c *Codec) deserialize(data string) *TreeNode {
+//	strList := strings.Split(data, ",")
+//}

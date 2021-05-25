@@ -18,10 +18,10 @@ func maxProduct(nums []int) int {
 	dpMax[0], dpMin[0] = nums[0], nums[0]
 	ans := nums[0]
 	for i := 1; i < len(nums); i++ {
-		dpMax[i] = Max(dpMax[i-1]*nums[i], Max(dpMin[i-1]*nums[i], nums[i]))
+		dpMax[i] = tools.Max(dpMax[i-1]*nums[i], tools.Max(dpMin[i-1]*nums[i], nums[i]))
 		dpMin[i] = tools.Max(dpMin[i-1]*nums[i], tools.Min(dpMax[i-1]*nums[i], nums[i]))
 		if ans < dpMax[i] {
-			ans = Max(ans, dpMax[i])
+			ans = tools.Max(ans, dpMax[i])
 		}
 	}
 	return ans

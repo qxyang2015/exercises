@@ -1,5 +1,7 @@
 package dynamic_programming
 
+import "v0/common/tools"
+
 /*
 53. 最大子序和
 https://leetcode-cn.com/problems/maximum-subarray/
@@ -14,12 +16,12 @@ func maxSubArray(nums []int) int {
 	dp := make([]int, len(nums))
 	dp[0] = nums[0]
 	for i := 1; i < len(nums); i++ {
-		dp[i] = Max(dp[i-1], 0) + nums[i]
+		dp[i] = tools.Max(dp[i-1], 0) + nums[i]
 	}
 
 	ans := nums[0]
 	for _, v := range dp {
-		ans = Max(ans, v)
+		ans = tools.Max(ans, v)
 	}
 	return ans
 }

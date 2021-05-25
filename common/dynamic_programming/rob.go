@@ -1,5 +1,7 @@
 package dynamic_programming
 
+import "v0/common/tools"
+
 /*
 198. 打家劫舍
 https://leetcode-cn.com/problems/house-robber/
@@ -16,11 +18,11 @@ func rob(nums []int) int {
 		return nums[0]
 	}
 	if n == 2 {
-		return Max(nums[0], nums[1])
+		return tools.Max(nums[0], nums[1])
 	}
-	p, q := nums[0], Max(nums[0], nums[1])
+	p, q := nums[0], tools.Max(nums[0], nums[1])
 	for i := 2; i < n; i++ {
-		p, q = q, Max(q, p+nums[i])
+		p, q = q, tools.Max(q, p+nums[i])
 	}
 	return q
 }
@@ -34,10 +36,10 @@ func rob1(nums []int) int {
 		return nums[0]
 	}
 	dp := make([]int, n)
-	dp[0], dp[1] = nums[0], Max(nums[0], nums[1])
+	dp[0], dp[1] = nums[0], tools.Max(nums[0], nums[1])
 	ans := dp[1]
 	for i := 2; i < n; i++ {
-		dp[i] = Max(dp[i-1], dp[i-2]+nums[i])
+		dp[i] = tools.Max(dp[i-1], dp[i-2]+nums[i])
 		if dp[i] > ans {
 			ans = dp[i]
 		}
@@ -56,8 +58,8 @@ func rob2(nums []int) int {
 	dp[1] = make([]int, n)
 	dp[1][0] = nums[0]
 	for i := 1; i < n; i++ {
-		dp[0][i] = Max(dp[0][i-1], dp[1][i-1])
+		dp[0][i] = tools.Max(dp[0][i-1], dp[1][i-1])
 		dp[1][i] = dp[0][i-1] + nums[i]
 	}
-	return Max(dp[0][n-1], dp[1][n-1])
+	return tools.Max(dp[0][n-1], dp[1][n-1])
 }
