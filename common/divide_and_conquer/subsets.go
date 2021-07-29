@@ -1,5 +1,7 @@
 package divide_and_conquer
 
+import "fmt"
+
 /*
 78. 子集
 https://leetcode-cn.com/problems/subsets/
@@ -21,4 +23,22 @@ func subsets(nums []int) [][]int {
 		ans = append(ans, set)
 	}
 	return ans
+}
+
+func subsets_1(nums []int) (ans [][]int) {
+	set := []int{}
+	var dfs func(int)
+	dfs = func(cur int) {
+		if cur == len(nums) {
+			fmt.Println(set)
+			ans = append(ans, append([]int(nil), set...))
+			return
+		}
+		set = append(set, nums[cur])
+		dfs(cur + 1)
+		set = set[:len(set)-1]
+		dfs(cur + 1)
+	}
+	dfs(0)
+	return
 }
