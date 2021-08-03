@@ -19,7 +19,7 @@ func threeSum(nums []int) [][]int {
 		return targetNums
 	}
 	sort.Ints(nums)
-	for i, a := range nums {
+	for i := 0; i < len(nums); i++ {
 		if i != 0 && nums[i] == nums[i-1] {
 			continue
 		}
@@ -28,14 +28,14 @@ func threeSum(nums []int) [][]int {
 			if j != i+1 && nums[j] == nums[j-1] {
 				continue
 			}
-			for j < k && a+nums[j]+nums[k] > 0 {
+			for j < k && nums[i]+nums[j]+nums[k] > 0 {
 				k--
 			}
 			if j >= k {
 				break
 			}
-			if a+nums[j]+nums[k] == 0 {
-				targetNums = append(targetNums, []int{a, nums[j], nums[k]})
+			if nums[i]+nums[j]+nums[k] == 0 {
+				targetNums = append(targetNums, []int{nums[i], nums[j], nums[k]})
 			}
 		}
 	}
