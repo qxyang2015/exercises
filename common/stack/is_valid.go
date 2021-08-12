@@ -10,6 +10,11 @@ https://leetcode-cn.com/problems/valid-parentheses/
     左括号必须以正确的顺序闭合。
 */
 
+/*
+1、string range 为rune, str[i]为byte
+2、如果当前元素属于右括号：1、如果栈为空、2、或者栈顶与当前元素不匹配 则不是有效括号
+*/
+
 var pairs = map[byte]byte{
 	')': '(',
 	'}': '{',
@@ -22,7 +27,10 @@ func isValid(s string) bool {
 	}
 	stack := []byte{}
 	for i := 0; i < len(s); i++ {
-		if findVal, ok := pairs[s[i]]; ok && findVal == stack[len(stack)-1] {
+		if findVal, ok := pairs[s[i]]; ok {
+			if len(stack) == 0 || findVal != stack[len(stack)-1] {
+				return false
+			}
 			stack = stack[:len(stack)-1]
 		} else {
 			stack = append(stack, s[i])
