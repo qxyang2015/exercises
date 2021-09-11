@@ -9,8 +9,25 @@ https://leetcode-cn.com/problems/unique-paths/
 问总共有多少条不同的路径？
 */
 
-//滚动数组法，空间复杂度更低
+//自己写的滚动数组法，空间复杂度更低
 func uniquePaths(m int, n int) int {
+	if m == 0 || n == 0 {
+		return 0
+	}
+	dp := make([]int, n)
+	for i := 0; i < n; i++ {
+		dp[i] = 1
+	}
+	for i := 1; i < m; i++ {
+		for j := 1; j < n; j++ {
+			dp[j] += dp[j-1]
+		}
+	}
+	return dp[n-1]
+}
+
+//滚动数组法，空间复杂度更低
+func uniquePaths0(m int, n int) int {
 	if n <= 0 {
 		return 0
 	}
