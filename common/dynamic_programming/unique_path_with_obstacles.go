@@ -9,8 +9,39 @@ https://leetcode-cn.com/problems/unique-paths-ii/
 现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
 */
 
-//滚动数组的方式，空间复杂度更低
+//自我理解实现的的最优方法
 func uniquePathsWithObstacles(obstacleGrid [][]int) int {
+	m, n := len(obstacleGrid), 0
+	if m > 0 {
+		n = len(obstacleGrid[0])
+	}
+	if m == 0 || n == 0 {
+		return 0
+	}
+	dp := make([]int, n)
+	for i := 0; i < n; i++ {
+		if obstacleGrid[0][i] == 0 {
+			dp[i] = 1
+		} else {
+			break
+		}
+	}
+	for i := 1; i < m; i++ {
+		for j := 0; j < n; j++ {
+			if obstacleGrid[i][j] == 1 {
+				dp[j] = 0
+				continue
+			}
+			if j != 0 {
+				dp[j] += dp[j-1]
+			}
+		}
+	}
+	return dp[n-1]
+}
+
+//滚动数组的方式，空间复杂度更低
+func uniquePathsWithObstacles0(obstacleGrid [][]int) int {
 	row, col := len(obstacleGrid), len(obstacleGrid[0])
 	dp := make([]int, col)
 	if obstacleGrid[0][0] == 0 {
